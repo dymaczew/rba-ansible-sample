@@ -2,7 +2,7 @@
   gather_facts: False
 
   vars:
-   - MyMessage: "Welcome to Test instance!"
+   - MyMessage: "Welcome to {{prefix}} instance!"
 
   tasks:
    - name: Nginx setup
