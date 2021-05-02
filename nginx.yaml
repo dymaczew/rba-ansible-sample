@@ -5,7 +5,7 @@
   become: true
 
   vars:
-   - MyMessage: "Welcome to {{prefix}} instance!"
+   - MyMessage: "Welcome to Think Lab 2176 instance!"
 
   tasks:
   - name: Add epel-release repo
