@@ -1,6 +1,6 @@
 ---
 - name: Install nginx
-- hosts: all
+  hosts: all
   gather_facts: False
   become: true
 
