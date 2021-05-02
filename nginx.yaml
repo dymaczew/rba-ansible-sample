@@ -23,6 +23,10 @@
       src: index.html.j2
       dest: /usr/share/nginx/html/index.html
 
+  - file:
+      path: /usr/share/nginx/html/index.html
+      mode: 0644
+
   - name: Start NGiNX
     service:
       name: nginx
