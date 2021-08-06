@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: Clone RobotShop Git repo
+    git:
+      repo: "https://github.com/instana/robot-shop.git"
+      dest: "/tmp/robotshop"
+      update: yes
