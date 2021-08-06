@@ -1,1 +1,1 @@
-- name: instana-agent-ansible 
+- name: instana.instana-agent-ansible 
