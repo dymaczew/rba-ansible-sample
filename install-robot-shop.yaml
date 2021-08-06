@@ -7,3 +7,10 @@
       repo: "https://github.com/instana/robot-shop.git"
       dest: "/tmp/robotshop"
       update: yes
+
+  - name: Deploy Docker Compose stack
+    docker_compose:
+      project_src: "/tmp/robotshop"
+      files:
+      - docker-compose.yaml
+      - docker-compose-load.yaml

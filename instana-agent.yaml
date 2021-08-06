@@ -1,0 +1,17 @@
+---
+  - hosts: all
+    become: yes
+    roles:
+      - instana.instana-agent-ansible
+    vars:
+      instana_agent_flavor: "dynamic"
+      instana_agent_jdk: "/opt/jdk"
+      instana_agent_updates_enabled: yes
+      instana_agent_updates_interval: "DAY"
+      instana_agent_updates_time: "04:30"
+      instana_agent_zone: "CoC / Dallas"
+      instana_agent_agent_key: "agentkey"
+      instana_agent_endpoint_host: "instanahost"
+      instana_agent_endpoint_port: 1444
+      instana_agent_tags: []
+
