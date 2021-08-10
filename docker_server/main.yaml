@@ -33,3 +33,16 @@
   - name: Install docker-compose
     pip:
       name: docker-compose
+
+  - name: Allow access from docker containers to host interface
+    ufw:
+      rule: allow
+      proto: tcp
+      src: '{{ item }}/16'
+      dest: '{{ item }}'
+    with_items:
+      - 172.16.0.1
+      - 172.17.0.1
+      - 172.18.0.1
+      - 172.19.0.1
+
