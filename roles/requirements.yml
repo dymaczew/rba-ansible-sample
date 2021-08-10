@@ -1,1 +1,2 @@
 - name: instana.instana-agent-ansible 
+- name: community.general
