@@ -1,0 +1,13 @@
+---
+- name: Start nginx
+  hosts: all
+  gather_facts: False
+  become: true
+
+  tasks:
+  - name: Start NGiNX
+    service:
+      name: nginx
+      state: started
+
+
