@@ -11,11 +11,13 @@
   - name: Add epel-release repo
     yum:
       name: epel-release
+      use_backend: yum
       state: present
 
   - name: Install nginx
     yum:
       name: nginx
+      use_backend: yum
       state: present
 
   - name: Insert Index Page
