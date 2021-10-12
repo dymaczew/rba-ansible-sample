@@ -1,8 +1,290 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Infrastructure Automation - Ansible demo</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
+
+<style>
+/*Typography*/
+html {
+  font: 16px "Lobster", serif;
+}
+
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.75em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+p {
+  font-size: 1.25em;
+}
+
+/*BASE*/
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+/*Layout*/
+* {
+  box-sizing: border-box;
+}
+
+/*Navigation*/
+nav {
+  position: relative;
+  left: -12em;
+  width: 6em;
+  height: 100%;
+  background: #DC143C;
+  font-family: "Roboto Condensed", sans-serif;
+  transition: left 0.85s linear;
+}
+
+.nav ul {
+  float: left;
+  width: 100%;
+}
+
+.nav a,
+.fa-bars,
+.soc-media a {
+  display: block;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.35s;
+}
+.nav a:hover,
+.fa-bars:hover,
+.soc-media a:hover {
+  background: #eb1f48;
+}
+.nav a:active,
+.fa-bars:active,
+.soc-media a:active {
+  background: #ed365b;
+}
+
+.nav a {
+  padding: 1em 0.5em;
+  width: 100%;
+}
+
+.fa-bars {
+  position: absolute;
+  left: 0em;
+  padding: 0.25em 0;
+  z-index: 99;
+  width: 2em;
+  background: #DC143C;
+  text-align: center;
+  transition: left 0.75s ease-in-out;
+}
+.fa-bars:hover {
+  cursor: pointer;
+}
+
+[type=checkbox] {
+  display: none;
+}
+[type=checkbox]:checked + label {
+  left: 3em;
+}
+[type=checkbox]:checked ~ nav {
+  left: 0;
+}
+
+/*Social media*/
+.soc-media {
+  position: absolute;
+  bottom: 5px;
+}
+
+.soc-media li {
+  float: left;
+}
+
+.soc-media a {
+  padding: 0.5em 0;
+  width: 2em;
+  font-weight: normal;
+  text-align: center;
+}
+
+/*Page Wrapper*/
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background: url(http://www.gratisography.com/pictures/119.jpg) no-repeat;
+  background-size: cover;
+}
+
+.wrapper > h1 {
+  position: absolute;
+  top: 45%;
+  width: 100%;
+  color: #DC143C;
+  font-size: 3em;
+  text-align: center;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/*Pages*/
+section {
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 100%;
+  overflow: hidden;
+  /*hide all on 0% width*/
+  transition: all 0.75s;
+}
+
+:target {
+  width: 100%;
+}
+
+section .content {
+  margin: 1em auto;
+  max-width: 900px;
+  width: 60%;
+  color: #DC143C;
+}
+
+section h1,
+section h2,
+section h3 {
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+section p {
+  margin: 0.5em 0;
+  font-family: "lobster";
+}
+
+/*Home page*/
+/*About page*/
+.about {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+/*tutorials page*/
+.tutorials {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.tutorials .row {
+  float: left;
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+.client-box {
+  float: left;
+  margin: 0 3em;
+  width: 100px;
+  height: 100px;
+}
+
+.client-box img {
+  display: block;
+  width: 100%;
+}
+
+/*Contact page*/
+.contact {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.map-container,
+.map-container iframe {
+  margin: 2em auto;
+  width: 300px;
+  height: 300px;
+  background: url(http://mapserver.mapy.cz/compose?cx=14.439095639754257&cy=50.05115503092217&w=1024&h=480&scale=0.7&z=15&palette=32) no-repeat center center;
+  border: 0.5em solid #DC143C;
+  border-radius: 50%;
+  overflow: hidden;
+}
+</style>
+
+</head>
 <body>
-
-<h1>Ansible Demo</h1>
-<p>{{MyMessage}}</p>
-
-</body>
-</html>
+<!-- partial:index.partial.html -->
+<input type="checkbox" id="checkbox" /><label class="fa fa-bars fa-2x" for="checkbox"></label>
+<nav role='navigation'>
+  <ul class="nav">
+    <li><a href="#page-home">Home</a></li>
+    <li><a href="#page-about">About</a></li>
+    <li><a href="#page-clients">Tutorials</a></li>
+    <li><a href="#page-contact">Contact</a></li>
+  </ul>
+  <ul class="soc-media">
+    <li><a href="#" class="fa fa-twitter"></a></li>
+    <li><a href="#" class="fa fa-facebook"></a></li>
+    <li><a href="#" class="fa fa-google-plus"></a></li>
+  </ul>
+</nav>
+<main class="wrapper">
+  <div class="overlay"></div>
+  <h1>{{MyMessage}}</h1>
+  <section class="home" id="page-home"></section>
+  <section class="about" id="page-about">
+    <div class="content">
+      <h1>About this demo </h1>
+      <p>This very simple websitei was create as a part of Infrastructure Automation Hands-on Labs.</p>
+      <p>I hope you enjoyed learning about provisioning services with Tterraform and Ansible</p>
+    </div>
+  </section>
+  <section class="tutorials" id="page-tutorials">
+    <div class="content">
+      <h1>Other Available Tutorials Include...</h1>
+      <div class="tutorials-grid">
+        <div class="row">
+          <div class="tutorials-box">
+            <img src="https://b1stern.github.io/InfrastructureManagementLab/static/c9b7861020998cb44c77fb3492a3e5ec/040c5/multi-cloud.jpg" alt="Automation with VMware" />
+          </div>
+          <div class="tutorials-box">
+            <img src="https://b1stern.github.io/InfrastructureManagementLab/static/24b0863c3ee7a3421e3c87a052448094/040c5/public-cloud.jpg" alt="Automation with Pulic Cloud" />
+          </div>
+          <div class="tutorials-box">
+            <img src="https://b1stern.github.io/InfrastructureManagementLab/static/0efc2e819bc8b55fa24b4d70cd67db29/040c5/prereqs.jpg" alt="Managing chargeback" />
+          </div>
+          <div class="tutorials-box">
+            <img src="https://b1stern.github.io/InfrastructureManagementLab/static/e752514c4d92adbfa4652e1b4e41c0e2/040c5/secure-access.jpg" alt="Managing SRE console access" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="contact" id="page-contact">
+    <div class="content">
+      <h1>Where Can You Find More...</h1>
+      <h2>Infrastructre Automation Labs</h2>
+      <h3>by IBM Technology Sales Enablement Team</h3>
+      <div class="map-container"></div>
+    </div>
+  </section>
+</main>
